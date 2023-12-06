@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        class AnimalWorld{
+            MealsHerbivores(herbivores) {
+        herbivores.forEach(herbivore => herbivore.eatGrass());
+        document.write("Травоядные приступили к кормежке.");
+    }
+
+    NutritionCarnivores(carnivores, herbivores) {
+        carnivores.forEach(carnivore => {
+            let randomHerbivore = herbivores[Math.floor(Math.random() * herbivores.length)];
+            carnivore.eat(randomHerbivore);
+        });
+        document.write("Хищники начали охоту на травоядных.");
+    }
+        }
+
+  
+        class Herbivore extends AnimalWorld{
+            #weight = 0;
+            #life = true;
+
+            constructor(weight){
+                this.#weight = weight;
+            }
+
+            eatGrass(){
+                this.#weight += 10;
+            }
+            get Weight(){
+                return this.#weight;
+            }
+
+        }
+        class Carnivore extends AnimalWorld{
+            #power = 0;
+
+            constructor(power){
+                this.#power = power;
+            }
+
+            get Power(){
+                return this.#power;
+            }
+
+
+
+            eat(herbivore){
+            if(this.#power > herbivore.Weight){
+                this.#power += 10;
+                document.write("хищник успешно поел");
+            }
+            else{
+                this.#power -= 10;
+                document.write("хищник успешно не поел");
+            }
+           }
+
+        }
+
+
+        class Wildebeest extends Herbivore{
+            constructor(weight){
+                super(weight);
+            }
+           
+           
+        }
+
+
+        class Bison extends Herbivore{
+            constructor(weight){
+                super(weight);
+            }
+        }
+
+
+        class Lion extends Carnivore{
+        constructor(power){
+    super(power);
+           }
+
+        
+        }
+
+
+        class Wolf extends Carnivore{
+            constructor(power){
+    super(power);
+           }
+        }
+    </script>
+</body>
+</html>
